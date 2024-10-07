@@ -20,55 +20,47 @@ const articulos = [zapatos, camisa, pantalon, campera, mochila];
 console.log(articulos);
 let catalogo = "Catálogo: \n";
 articulos.forEach(agrego);
-function agrego(arti) {
-    catalogo = catalogo + " -" + arti.id + "- " + arti.nombre + " \n"
-}
+let carrito = [];
+let cuenta = 0;
 
 compra = confirm("¿Le muestro el catálogo?");
 if (!compra) {
     alert("Gracias por su visita!")
 } else {
-    elije = confirm(catalogo + " \n Retenga el código del artículo ");
-}
-//     if (elije) {
-
-//     }
-//     while (true) {
-//     entrada = prompt("Ingrese un importe: (ESC para salir)");
-//     if ((entrada == "") || (entrada == null) || (entrada == "esc")) {
-//         break;
-//     }    
-//     if (isNaN(entrada)) {
-//         alert("Por favor, ingrese solo números!")
-//     }
-//     else{
-//         entrada = parseInt(entrada);
-//         total =total + entrada;
-//         continua = confirm("Hasta el momento tu compra es de : " + total + "  ¿Quieres ingresar otro importe?");
-//         if (!continua)  {
-//             break
-//         }
-//     }
-// }
-
-
-// alert("El total es de: " + total);
-// continua = confirm("¿Pagas contado?");
-// if (continua) {
-//     alert("Muchas gracias por tu compra");
-// }
-// else {
-//     while (true)   {
-//         cuotas = prompt("¿Cuántas cutas mensuales? (la tasa anual es de 18%)");
-//         if (isNaN(cuotas)) {
-//             alert("Por favor, ingrese solo números!")
-//         }
-//         else {
-//             cuotas = parseInt(cuotas);
-//             let cuota = calculaCuota(total, cuotas)            
-//             alert("Tu cuota será: " + cuota);
-//             break
-//         }
-//     } 
-        
-// }
+    while (true) {
+        elije = prompt(catalogo + " \n Agregue un artículo al carrito ");
+        console.log(catalogo.length)
+        if (!(isNaN(elije) || (elije>articulos.length) || (elije<0)))
+        {
+            carrito.push(elije);
+            let importe = articulos[elije].precio;
+            cuenta =+ articulos[importe];
+            let sigue = confirm("Hasta ahora su compra tiene un importe de: " + cuenta + "\n " + "¿quiere agregar otro artículo?");
+            if (!sigue) {
+                break;
+            }
+        } else {
+            alert("Por favor ingresa un artículo válido");    
+        }
+    }
+    alert("El total es de: " + cuenta);
+        continua = confirm("¿Pagas contado?");
+        if (continua) {
+            alert("Muchas gracias por tu compra");
+        }
+        else {
+            while (true)   {
+                let cuotas = prompt("¿Cuántas cuotas mensuales? (la tasa anual es de 18%)");
+                if (isNaN(cuotas)) {
+                    alert("Por favor, ingrese solo números!")
+                }
+                else {
+                    cuotas = parseInt(cuotas);
+                    let cuota = calculaCuota(total, cuotas)            
+                    alert("Tu cuota será: " + cuota);
+                    break
+                }
+            } 
+            
+        }
+}    
